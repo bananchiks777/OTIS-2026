@@ -1,12 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include <functional>
 #include <string>
 #include <clocale>
 #include "Model.h"
 #include "Input.h"
 
-void testModel(Model& model, const std::function<double(double)>& input,
+template <typename InputFunc>
+void testModel(Model& model, InputFunc input,
                int n, double h, const std::string& fileName)
 {
     std::ofstream file(fileName);
