@@ -66,47 +66,6 @@
 
 Благодаря полиморфизму код расчёта работает с любой моделью через указатель/ссылку на `Model`, не зная её конкретного типа.
 
-### UML-диаграмма классов
-
-```mermaid
-classDiagram
-    class Model {
-        <<abstract>>
-        #double a
-        #double b
-        #double h
-        +Model(a: double, b: double, h: double)
-        +~Model()* virtual
-        +calculate(y: double, u: double) double*
-    }
-
-    class Model11 {
-        +Model11(a: double, b: double)
-        +calculate(y: double, u: double) double
-    }
-
-    class Model25 {
-        +Model25(a: double, b: double)
-        +calculate(y: double, u: double) double
-    }
-
-    class Model39 {
-        +Model39(b: double, h: double)
-        +calculate(y: double, u: double) double
-    }
-
-    Model <|-- Model11 
-    Model <|-- Model25 
-    Model <|-- Model39 
-```
-
-Пояснения к диаграмме:
-
-- `*` у `calculate` и деструктора означает абстрактный (чисто виртуальный) метод;
-- `Model11` и `Model25` вызывают конструктор базового класса с параметрами `a`, `b`;
-- `Model39` использует только `b` и `h` (параметр `a` в этой модели не используется);
-- `#` — защищённые (`protected`) поля, доступные наследникам; `+` — открытые члены.
-
 ## Функционал программы
 
 Программа позволяет:
@@ -226,6 +185,40 @@ pause
 Гармоническое воздействие:
 
 ![](model39_harmonic.png)
+
+### UML-диаграмма классов
+
+```mermaid
+classDiagram
+    class Model {
+        <<abstract>>
+        #double a
+        #double b
+        #double h
+        +Model(a: double, b: double, h: double)
+        +~Model()* virtual
+        +calculate(y: double, u: double) double*
+    }
+
+    class Model11 {
+        +Model11(a: double, b: double)
+        +calculate(y: double, u: double) double
+    }
+
+    class Model25 {
+        +Model25(a: double, b: double)
+        +calculate(y: double, u: double) double
+    }
+
+    class Model39 {
+        +Model39(b: double, h: double)
+        +calculate(y: double, u: double) double
+    }
+
+    Model <|-- Model11 
+    Model <|-- Model25 
+    Model <|-- Model39 
+```
 
 ## Выводы
 
